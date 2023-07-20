@@ -6,6 +6,15 @@ public class ErrorItem {
 	private String description;
 	private String params;
 	
+	public ErrorItem() {}
+	
+	public ErrorItem(String code, String description, String params) {
+		super();
+		this.code = code;
+		this.description = description;
+		this.params = params;
+	}
+
 	public String getCode() {
 		return code;
 	}
@@ -27,13 +36,12 @@ public class ErrorItem {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("ErrorItem [code=");
+		builder.append("code=");
 		builder.append(code);
 		builder.append(", description=");
 		builder.append(description);
 		builder.append(", params=");
 		builder.append(params);
-		builder.append("]");
 		return builder.toString();
 	}
 	

@@ -1,14 +1,32 @@
 package it.fabrick.bean;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
+import it.fabrick.model.ErrorItem;
 
 public class RestOutput<T> {
 
-	private static final String OK = "OK";
+	public static final String OK = "OK";
+	public static final String KO = "KO";
 
 	private String status;
-	private List<String> error;
+	
+	private List<ErrorItem> error = new ArrayList<>();
+	
 	private T payload;
+	
+	
+	public RestOutput() {
+	}
+	
+	public RestOutput(String status) {
+		super();
+		this.status = status;
+	}
+
 
 	public String getStatus() {
 		return status;
@@ -18,11 +36,12 @@ public class RestOutput<T> {
 		this.status = status;
 	}
 
-	public List<String> getError() {
+
+	public List<ErrorItem> getError() {
 		return error;
 	}
 
-	public void setError(List<String> error) {
+	public void setError(List<ErrorItem> error) {
 		this.error = error;
 	}
 
@@ -38,8 +57,24 @@ public class RestOutput<T> {
 		return OK.equals(status);
 	}
 
-	public String getFormattedErrors() {
-		return error.toString();
+	public void addError(String code, String description, String params) {
+		error.add(new ErrorItem(code, description, params));
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RestOutput [status=");
+		builder.append(status);
+		builder.append(", error=");
+		builder.append(error);
+		builder.append(", payload=");
+		builder.append(payload);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	
+
+	
 }
