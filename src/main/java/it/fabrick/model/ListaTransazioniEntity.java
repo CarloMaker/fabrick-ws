@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import it.fabrick.model.movimenti.Transaction;
+import it.fabrick.bean.Transaction;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

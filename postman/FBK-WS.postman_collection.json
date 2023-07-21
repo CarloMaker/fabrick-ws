@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "91acfe90-5886-4a1d-9036-73c2ed02db18",
+		"name": "FBK-WS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18083057"
+	},
+	"item": [
+		{
+			"name": "BNCSL",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Citofon0",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "UJ84W01",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Auth-Schema",
+						"value": "S2S",
+						"type": "text"
+					},
+					{
+						"key": "Api-Key",
+						"value": "FXOVVXXHVCPVPBZXIJOBGUGSKHDNFRRQJP",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://sandbox.platfr.io/api/gbs/banking/v4.0/accounts",
+					"protocol": "https",
+					"host": [
+						"sandbox",
+						"platfr",
+						"io"
+					],
+					"path": [
+						"api",
+						"gbs",
+						"banking",
+						"v4.0",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BNCSL Account",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Citofon0",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "UJ84W01",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Auth-Schema",
+						"value": "S2S",
+						"type": "text"
+					},
+					{
+						"key": "Api-Key",
+						"value": "FXOVVXXHVCPVPBZXIJOBGUGSKHDNFRRQJP",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://sandbox.platfr.io/api/gbs/banking/v4.0/accounts",
+					"protocol": "https",
+					"host": [
+						"sandbox",
+						"platfr",
+						"io"
+					],
+					"path": [
+						"api",
+						"gbs",
+						"banking",
+						"v4.0",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BNCSL Transactions  DIRECT",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Citofon0",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "UJ84W01",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Auth-Schema",
+						"value": "S2S",
+						"type": "text"
+					},
+					{
+						"key": "Api-Key",
+						"value": "FXOVVXXHVCPVPBZXIJOBGUGSKHDNFRRQJP",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://sandbox.platfr.io/api/gbs/banking/v4.0/accounts",
+					"protocol": "https",
+					"host": [
+						"sandbox",
+						"platfr",
+						"io"
+					],
+					"path": [
+						"api",
+						"gbs",
+						"banking",
+						"v4.0",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BNCSL Transactions",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Citofon0",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "UJ84W01",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Auth-Schema",
+						"value": "S2S",
+						"type": "text"
+					},
+					{
+						"key": "Api-Key",
+						"value": "FXOVVXXHVCPVPBZXIJOBGUGSKHDNFRRQJP",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/account/14537780/transaction?fromAccountingDate=2019-04-01&toAccountingDate=2020-04-01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account",
+						"14537780",
+						"transaction"
+					],
+					"query": [
+						{
+							"key": "fromAccountingDate",
+							"value": "2019-04-01"
+						},
+						{
+							"key": "toAccountingDate",
+							"value": "2020-04-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BNCSL GetCash",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Citofon0",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "UJ84W01",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/get-cash/14537780",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"get-cash",
+						"14537780"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "money-transfer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"creditor\": {\r\n    \"name\": \"John Doe\",\r\n    \"account\": {\r\n      \"accountCode\": \"IT23A0336844430152923804660\",\r\n      \"bicCode\": \"SELBIT2BXXX\"\r\n    },\r\n    \"address\": {\r\n      \"address\": null,\r\n      \"city\": null,\r\n      \"countryCode\": null\r\n    }\r\n  },\r\n  \"executionDate\": \"2023-07-19\",\r\n  \"uri\": \"REMITTANCE_INFORMATION\",\r\n  \"description\": \"Payment invoice 75/2017\",\r\n  \"amount\": 800,\r\n  \"currency\": \"EUR\",\r\n  \"isUrgent\": false,\r\n  \"isInstant\": false,\r\n  \"feeType\": \"SHA\",\r\n  \"feeAccountId\": null,\r\n  \"taxRelief\": {\r\n    \"taxReliefId\": \"L449\",\r\n    \"isCondoUpgrade\": false,\r\n    \"creditorFiscalCode\": \"56258745832\",\r\n    \"beneficiaryType\": \"NATURAL_PERSON\",\r\n    \"naturalPersonBeneficiary\": {\r\n      \"fiscalCode1\": \"MRLFNC81L04A859L\",\r\n      \"fiscalCode2\": null,\r\n      \"fiscalCode3\": null,\r\n      \"fiscalCode4\": null,\r\n      \"fiscalCode5\": null\r\n    },\r\n    \"legalPersonBeneficiary\": {\r\n      \"fiscalCode\": null,\r\n      \"legalRepresentativeFiscalCode\": null\r\n    }\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/money-transfer/14537780",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"money-transfer",
+						"14537780"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "money-transfer Direct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"creditor\": {\r\n    \"name\": \"John Doe\",\r\n    \"account\": {\r\n      \"accountCode\": \"IT23A0336844430152923804660\",\r\n      \"bicCode\": \"SELBIT2BXXX\"\r\n    },\r\n    \"address\": {\r\n      \"address\": null,\r\n      \"city\": null,\r\n      \"countryCode\": null\r\n    }\r\n  },\r\n  \"executionDate\": \"2023-07-19\",\r\n  \"uri\": \"REMITTANCE_INFORMATION\",\r\n  \"description\": \"Payment invoice 75/2018\",\r\n  \"amount\": 800,\r\n  \"currency\": \"EUR\",\r\n  \"isUrgent\": false,\r\n  \"isInstant\": false,\r\n  \"feeType\": \"SHA\",\r\n  \"feeAccountId\": \"45685475\",\r\n  \"taxRelief\": {\r\n    \"taxReliefId\": \"L449\",\r\n    \"isCondoUpgrade\": false,\r\n    \"creditorFiscalCode\": \"56258745832\",\r\n    \"beneficiaryType\": \"NATURAL_PERSON\",\r\n    \"naturalPersonBeneficiary\": {\r\n      \"fiscalCode1\": \"MRLFNC81L04A859L\",\r\n      \"fiscalCode2\": null,\r\n      \"fiscalCode3\": null,\r\n      \"fiscalCode4\": null,\r\n      \"fiscalCode5\": null\r\n    },\r\n    \"legalPersonBeneficiary\": {\r\n      \"fiscalCode\": null,\r\n      \"legalRepresentativeFiscalCode\": null\r\n    }\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sandbox.platfr.io/api/gbs/banking/v4.0/accounts/14537780/payments/money-transfers",
+					"protocol": "https",
+					"host": [
+						"sandbox",
+						"platfr",
+						"io"
+					],
+					"path": [
+						"api",
+						"gbs",
+						"banking",
+						"v4.0",
+						"accounts",
+						"14537780",
+						"payments",
+						"money-transfers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,4 +1,4 @@
-package it.fabrick.model;
+package it.fabrick.bean;
 
 public class NaturalPersonBeneficiary {
 	 private String fiscalCode1;

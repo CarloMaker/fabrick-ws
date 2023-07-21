@@ -1,5 +1,5 @@
 
-package it.fabrick.model;
+package it.fabrick.bean;
 
 public class MoneyTransferRequestBody {
 

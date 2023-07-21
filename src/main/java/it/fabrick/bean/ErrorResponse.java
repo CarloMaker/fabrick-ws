@@ -1,4 +1,4 @@
-package it.fabrick.model;
+package it.fabrick.bean;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package it.fabrick.bean;
+package it.fabrick.app.exception;
 
 public enum ExceptionType {
 

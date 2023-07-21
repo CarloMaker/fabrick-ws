@@ -1,4 +1,4 @@
-package it.fabrick.model.movimenti;
+package it.fabrick.bean;
 
 import java.util.List;
 

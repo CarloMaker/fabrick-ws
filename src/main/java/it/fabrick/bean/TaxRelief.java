@@ -1,4 +1,4 @@
-package it.fabrick.model;
+package it.fabrick.bean;
 
 public class TaxRelief {
 	private String taxReliefId;

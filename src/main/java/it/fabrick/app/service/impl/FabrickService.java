@@ -1,10 +1,8 @@
-package it.fabrick.app.service;
+package it.fabrick.app.service.impl;
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -14,7 +12,6 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -25,19 +22,18 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.util.UriTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import it.fabrick.app.exception.ExceptionType;
 import it.fabrick.app.exception.FabrickRestException;
 import it.fabrick.app.repository.IRequestTransazioniRepository;
+import it.fabrick.app.service.FabrickServiceI;
 import it.fabrick.bean.BalanceBean;
-import it.fabrick.bean.ExceptionType;
+import it.fabrick.bean.ErrorResponse;
+import it.fabrick.bean.ListaTransazioniResponse;
+import it.fabrick.bean.MoneyTransferRequestBody;
 import it.fabrick.bean.RestOutput;
-import it.fabrick.model.ErrorResponse;
 import it.fabrick.model.ListaTransazioniEntity;
-import it.fabrick.model.MoneyTransferRequestBody;
-import it.fabrick.model.movimenti.ListaTransazioniResponse;
-import it.fabrick.model.movimenti.Transaction;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -76,12 +72,14 @@ public class FabrickService implements FabrickServiceI {
 	}
 
 	
-	// EX: /api/gbs/banking/v4.0/accounts/145377801/balance
+
+	/**
+	 * URL /api/gbs/banking/v4.0/accounts/145377801/balance 
+	 */
 	@Override
 	public BalanceBean getBalanceBean(String accountId) throws FabrickRestException  {
 
 		String url = new StringBuffer(getUrlBase()).append(ACCOUNT_PATH).toString();
-
 		HttpEntity<String> request = new HttpEntity<>(getHeaders());
 
 		UriTemplate template = new UriTemplate(url);
@@ -90,7 +88,7 @@ public class FabrickService implements FabrickServiceI {
 
 		try {
 			URI uriToCall = template.expand(uriVariables);
-			logger.info("Calling " + uriToCall);
+			logger.info("Calling getBalanceBean to {} " , uriToCall);
 			ResponseEntity<RestOutput<BalanceBean>> responseEntity = restTemplate.exchange(uriToCall, HttpMethod.GET,
 					request, new ParameterizedTypeReference<RestOutput<BalanceBean>>() {});
 			if (responseEntity.getBody().isValid())
@@ -108,7 +106,7 @@ public class FabrickService implements FabrickServiceI {
 	}
 
 	private void handleClientException(RestClientResponseException e) throws FabrickRestException {
-		//l'eccezione lavora sempre con un tipo di lista ErrorResponse
+		//l'eccezione lavora sempre con un tipo ErrorResponse
 		//se non viene passata dall'eccezione ne viene creata una (caso di path cambiato ) 
 		
 		ErrorResponse responseBodyAs = e.getResponseBodyAs(ErrorResponse.class);
@@ -133,6 +131,7 @@ public class FabrickService implements FabrickServiceI {
 	
  
 	/**
+	 * VA IN ERRORE
 	 * Path  /accounts/14537780/payments/money-transfers 
 	 */
 	@Override
@@ -149,7 +148,7 @@ public class FabrickService implements FabrickServiceI {
 		HttpEntity<MoneyTransferRequestBody> request = new HttpEntity<>(requestBody, headers);
 		try {
 			URI uriToCall = template.expand(uriVariables);
-			logger.info("Calling {} " , uriToCall);
+			logger.info("Calling doMoneyTrasfer to {} " , uriToCall);
 			ResponseEntity<String> entityResponse = restTemplate.postForEntity(uriToCall, request,
 					String.class);
 			
@@ -164,6 +163,9 @@ public class FabrickService implements FabrickServiceI {
 
 	}
 
+	/**
+	 * URL : /accounts/14537780/transactions?fromAccountingDate=2019-04-01&toAccountingDate=2020-04-01
+	 */
 	@Override
 	public ListaTransazioniResponse getAccountTransaction(String accountId, String fromAccountingDate,
 			String toAccountingDate) throws FabrickRestException {
@@ -185,7 +187,7 @@ public class FabrickService implements FabrickServiceI {
 		try {
 			String uriString = builder.toUriString();
 			
-			logger.info("Calling {}" , uriString);
+			logger.info("Calling getAccountTransaction to {} " , uriString);
 
 			ResponseEntity<RestOutput<ListaTransazioniResponse>> responseEntity = restTemplate.exchange(uriString,
 					HttpMethod.GET, requestEntity,
@@ -209,7 +211,10 @@ public class FabrickService implements FabrickServiceI {
 		
 	}
 
-	
+	/**
+	 * Non bloccante persistenza delle operazioni su DB
+	 * @param payload
+	 */
 	@Transactional
 	private void persistTransactionsOperation(ListaTransazioniResponse payload) {
 		
@@ -220,11 +225,10 @@ public class FabrickService implements FabrickServiceI {
 			deep = objectMapper
 			      .readValue(objectMapper.writeValueAsString(payload), ListaTransazioniEntity.class);
 			deep.setRequestDate(new Date());
-			deep.getList().forEach(t -> t.setListaTransazioniEntity(deep));
+			deep.getList().forEach(t -> t.setListaTransazioniEntity(deep)); //assign parent 
 			requestTransactionRepository.save(deep);
 		} catch (JsonProcessingException e) {
-			
-			e.printStackTrace();
+			logger.error("Errore persistTransactionsOperation " , e);
 		}
 		
 		

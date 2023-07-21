@@ -1,9 +1,6 @@
 package it.fabrick.app.exception;
 
-import org.springframework.http.HttpStatus;
-
-import it.fabrick.bean.ExceptionType;
-import it.fabrick.model.ErrorResponse;
+import it.fabrick.bean.ErrorResponse;
 
 public class FabrickRestException extends Exception {
 	

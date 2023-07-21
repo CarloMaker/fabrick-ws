@@ -5,8 +5,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import it.fabrick.model.ErrorItem;
-
 public class RestOutput<T> {
 
 	public static final String OK = "OK";

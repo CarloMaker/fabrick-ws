@@ -1,4 +1,4 @@
-package it.fabrick.model.movimenti;
+package it.fabrick.bean;
 
 public class TransactionType {
 	private String enumeration;
